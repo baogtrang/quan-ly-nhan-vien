@@ -2,6 +2,7 @@
 function renderList (employeeList){
     var contentHTML = "";
     for (var i=0; i<employeeList.length; i++){
+        // object employee
         var employee = employeeList[i];
         var contentTr = `<tr>
             <td>${employee.id}</td>
@@ -12,14 +13,15 @@ function renderList (employeeList){
             <td>${employee.totalSalary}</td>
             <td>${employee.category}</td>
             <td>
-                <button onclick="editEmployee('${employee.id}')">Edit</button>
-                <button onclick="deleteEmployee('${employee.id}')">Delete</button>
+                <button class="btn btn-info" onclick="editEmployee('${employee.id}')">Edit</button>
+                <button class="btn btn-warning" onclick="deleteEmployee('${employee.id}')">Delete</button>
             </td>
         </tr>`;
         contentHTML += contentTr;
     }
     document.getElementById("tableDanhSach").innerHTML = contentHTML;
 }
+
 function findIndex (id, employeeList) {
     var index = employeeList.findIndex(function(employee){
         return employee.id == id;
@@ -41,8 +43,10 @@ function getFormData (){
     return employee;
 }
 
-// click Edit button, 
+// click Edit button 
 function showFormData (id){
+    var index = findIndex(id , employee);
+    var employee = employeeList[index];
     var _id =document.getElementById("tknv").value;
     var _name=document.getElementById("name").value;
     var _email=document.getElementById("email").value;
